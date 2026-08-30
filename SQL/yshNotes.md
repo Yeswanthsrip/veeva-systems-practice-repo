@@ -193,3 +193,38 @@ GROUP BY
 HAVING
   AVG(collection_in_cr - budget_in_cr) >= 100;
   
+***SQL functions
+
+--Date Functions: Used to work with dates or times.
+--Cast Functions: Used to change the data type of a value.
+--Arithmetic Functions: Used to perform calculations on numbers.
+
+==strftime()
+	The strftime() function is used to extract year, month, day, hour
+	Strftime() extracts date and time in the string format.
+	
+	format		description				output format				Function					Behavior
+	
+	%Y			Year					1990, 2021 etc.			strftime("%Y", field_name)		Extract Year
+	%m			Month					01 - 12					strftime("%m", field_name)		Extract Month
+	%d			Day of the month		01 - 31					strftime("%d", field_name)		Extract Day
+	%H			Hour					00 - 24					strftime("%H", field_name)		Extract Hour
+	...	...	...	...	...
+	
+	strftime(format, field_name)
+	strftime("%Y", release_date)
+	
+	SELECT 
+    strftime('%m', release_date) AS month,
+		COUNT(*) AS total_movies
+	FROM
+		movie
+	WHERE
+		strftime('%Y', release_date) = '2010'
+	GROUP BY
+		month;
+		
+
+***Cast Functions
+
+	
