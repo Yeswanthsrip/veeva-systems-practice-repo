@@ -227,4 +227,17 @@ HAVING
 
 ***Cast Functions
 
+	--CAST function is used to convert a value from one data type to another data type. 
 	
+	CAST(value AS data_type);
+	CAST(strftime('%Y', release_date) AS INTEGER)
+	
+	SELECT
+	  strftime('%m', release_date) AS month,
+	  COUNT(*) AS total_movies
+	FROM
+	  movie
+	WHERE
+	  CAST(strftime('%Y', release_date) AS INTEGER) = 2010
+	GROUP BY
+	  month;
