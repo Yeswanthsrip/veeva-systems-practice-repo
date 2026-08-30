@@ -319,3 +319,94 @@ HAVING
 		  movie
 		WHERE
 		  CAST(strftime("%Y", release_date) AS INTEGER) BETWEEN 2015 AND 2020;
+		  
+		  
+***SET Operations
+
+	--SQL Set operation is used to combine the two or more SQL queries.
+	
+	1.Intersect==in both
+	2.Minus==present in A not in B
+	3.Union==Unique present in either A or B
+	4.Union All==Does not eliminate duplicate results 
+	
+	Rules :- Each SELECT statement must have the same number of columns.
+			 The columns must have similar data types.
+			 The columns in each SELECT statement must be in the same order.
+	
+	Syntax :- 
+			SELECT
+				c1, c2
+			FROM
+				table_name_1
+			SET_OPERATOR
+			SELECT
+				c1, c2
+			FROM
+				table_name_2;
+	
+	SELECT
+	  actor_id
+	FROM
+	  cast
+	WHERE
+	  movie_id = 6
+	INTERSECT
+	SELECT
+	  actor_id
+	FROM
+	  cast
+	WHERE
+	  movie_id = 15;
+	  
+	**Except
+		SELECT
+		  actor_id
+		FROM
+		  cast
+		WHERE
+		  movie_id = 6		
+		EXCEPT
+		SELECT
+		  actor_id
+		FROM
+		  cast
+		WHERE
+		  movie_id = 15;
+		  
+	**ORDER BY Clause in Set Operations
+	
+		SELECT
+		  actor_id
+		FROM
+		  cast
+		WHERE
+		  movie_id = 6
+		UNION
+		SELECT
+		  actor_id
+		FROM
+		  cast
+		WHERE
+		  movie_id = 15
+		ORDER BY
+		  1 DESC;
+	**Pagination in Set Operations
+		
+		SELECT
+		  actor_id
+		FROM
+		  cast
+		WHERE
+		  movie_id = 6
+		UNION
+		SELECT
+		  actor_id
+		FROM
+		  cast
+		WHERE
+		  movie_id = 15
+		ORDER BY
+		  1 DESC
+		LIMIT
+		  5;
