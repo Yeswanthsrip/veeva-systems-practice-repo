@@ -241,3 +241,38 @@ HAVING
 	  CAST(strftime('%Y', release_date) AS INTEGER) = 2010
 	GROUP BY
 	  month;
+	  
+***Arithmetic Functions
+
+	--FLOOR Function
+		The FLOOR function rounds a number to the nearest integer below its current value.
+		
+		FLOOR(number)
+		SELECT FLOOR(2.3);
+		
+	--CEIL Function
+		The CEIL function rounds a number to the nearest integer above its current value.
+		
+		CEIL(number)
+		SELECT CEIL(-2.7);
+		
+	--ROUND Function
+		The ROUND function rounds a number to the specified number of decimal places.
+		
+		ROUND(number, decimal_places)
+		SELECT ROUND(2.345, 2);
+		SELECT ROUND(2.345, 1);
+		
+***String Functions
+
+		SQL Function					Behavior
+		
+			UPPER()				Converts a string to upper case
+			LOWER()				Converts a string to lowercase
+			
+	SELECT
+	  name
+	FROM
+	  movie
+	WHERE
+	  UPPER(name) LIKE UPPER("%avengers%");
