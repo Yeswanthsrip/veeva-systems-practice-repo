@@ -276,3 +276,46 @@ HAVING
 	  movie
 	WHERE
 	  UPPER(name) LIKE UPPER("%avengers%");
+	  
+***Case Clause
+	
+	--Similar to the switch case / if-else conditions
+	--We can use CASE in various clauses like SELECT, WHERE, HAVING, ORDER BY and GROUP BY.
+	
+	SELECT c1, c2,
+	CASE
+		WHEN condition1 THEN value1
+		WHEN condition2 THEN value2
+		...
+		ELSE value
+	END AS cn
+	FROM table;
+	
+	SELECT id, name, (collection_in_cr - budget_in_cr) as profit,
+	  CASE
+		WHEN (collection_in_cr - budget_in_cr) <= 100 THEN (collection_in_cr - budget_in_cr) * 0.1
+		WHEN (collection_in_cr - budget_in_cr > 100
+			AND collection_in_cr - budget_in_cr <= 500) THEN (collection_in_cr - budget_in_cr) * 0.15
+		ELSE (collection_in_cr - budget_in_cr) * 0.18
+	  END AS tax_amount
+	FROM
+	  movie;
+	  
+	  
+	**Case with Aggregates
+	
+		SELECT
+		  COUNT(
+			CASE
+			  WHEN rating >= 8 THEN 1
+			END
+		  ) AS above_eight,
+		  COUNT(
+			CASE
+			  WHEN rating < 8 THEN 1
+			END
+		  ) AS below_eight
+		FROM
+		  movie
+		WHERE
+		  CAST(strftime("%Y", release_date) AS INTEGER) BETWEEN 2015 AND 2020;
