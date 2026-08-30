@@ -146,3 +146,50 @@ GROUP BY
   name
 HAVING
   half_centuries > 1;
+  
+***Expressions in querying
+
+**Arthmetic operations in sql
+..SELECT
+  (budget_in_cr + 10) AS new_budget
+FROM
+  movie;
+
+..SELECT
+  (budget_in_cr * 100) budget_as_lakhs
+FROM
+  movie;
+  
+..SELECT
+  (collection_in_cr / budget_in_cr) AS collection_rate
+FROM
+  movie;
+  
+..SELECT
+  age % 2 AS age_reminder_for_2
+FROM
+  actor;
+  
+**Using Expressions in select clause
+
+..SELECT
+  age % 2 AS age_reminder_for_2
+FROM
+  actor;
+  
+**In update clause
+
+..UPDATE movie
+SET rating = rating/2;
+
+**In having clause
+
+..SELECT
+  genre
+FROM
+  movie
+GROUP BY
+  genre
+HAVING
+  AVG(collection_in_cr - budget_in_cr) >= 100;
+  
