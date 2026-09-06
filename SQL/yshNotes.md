@@ -619,4 +619,39 @@ HAVING
 		ON student.id = student_course.student_id
 		WHERE student_course.id IS NULL;
 		
-	
+	**Joins on Multiple Tables
+		--Fetch all the students who enrolled for the courses taught by the instructor “Arun” (id = 102)
+			---SELECT T.name AS course_name,
+			   student.full_name
+			FROM (course
+			   INNER JOIN student_course
+			ON course.id = student_course.course_id) AS T
+			   INNER JOIN student
+			ON T.student_id = student.id
+			WHERE course.instructor_id = 102;
+		
+		--Using joins with other clauses
+			---We can applyWHERE,ORDER BY,HAVING,GROUP BY,LIMIT,OFFSETand other clauses 
+			(which are used for retrieving data tables) on the temporary joined table as well.
+		
+			---SELECT student.full_name
+			FROM (course
+			   INNER JOIN student_course
+			ON course.id = student_course.course_id) AS T
+			   INNER JOIN student
+			ON T.student_id = student.id
+			WHERE course.name = "Machine Learning"
+			ORDER BY student_course.score DESC
+			LIMIT 1;
+		--Using joins with aggregations
+			---We can apply aggregate functions such as SUM, AVG, COUNT, MAX, MIN and others to perform calculations on the temporary joined table as well.
+			
+			---SELECT
+			  course.name AS course_name,
+			  MAX(score) AS highest_score
+			FROM
+			  course
+			  LEFT JOIN student_course 
+			ON course.id = student_course.course_id
+			GROUP BY
+			  course.id;
