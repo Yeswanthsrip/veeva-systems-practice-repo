@@ -575,3 +575,48 @@ HAVING
 	--   JOIN product ON product.id = cart_product.product_id
 	-- WHERE
 	--   cart.customer_id = 1;
+	
+***JOINS
+	**Natural Join
+		..NATURAL JOINcombines the tables based on the common columns.
+		
+		--SELECT course.name,
+		  instructor.full_name
+		FROM course
+		  NATURAL JOIN instructor
+		WHERE instructor.full_name = "Alex";
+		
+		--Natural join on multiple tables
+			SELECT
+			  review.course_id,
+			  review.content,
+			  review.created_at,
+			  student_course.score
+			FROM
+			  review NATURAL
+			  JOIN student_course
+			WHERE
+			  student_course.score > 70;
+			  
+	**Inner Join
+		..INNER JOIN combines rows from both the tables if they meet a specified condition.
+		
+		--SELECT student.full_name,
+		   review.content,
+		   review.created_at
+		FROM student
+		   INNER JOIN review 
+		ON student.id = review.student_id
+		WHERE review.course_id = 15;
+		
+	**Left Join
+		..InLEFT JOIN, for each row in the left table, matched rows from the right table are combined. 
+		If there is no match, NULL values are assigned to the right half of the rows in the temporary table.
+		
+		--SELECT student.full_name
+		FROM student
+		   LEFT JOIN student_course
+		ON student.id = student_course.student_id
+		WHERE student_course.id IS NULL;
+		
+	
