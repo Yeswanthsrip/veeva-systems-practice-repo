@@ -410,3 +410,42 @@ HAVING
 		  1 DESC
 		LIMIT
 		  5;
+		  
+***Entity Relationship Model (ER Model)
+
+	**Entity
+		Real world objects/concepts are called entities in ER Model.
+	**Attributes of an Entity
+		Properties of real world objects/concepts are represented as attributes of an entity in ER model.
+	**Key Attribute
+		The attribute that uniquely identifies each entity is called key attribute.
+	**Entity Type
+		Entity Type is a collection of entities that have the same attributes (not values).
+	**Relationships
+		Association among the entities is called a relationship.
+		Types of Relationships :-
+			One-to-One Relationship == An entity is related to only one entity, and vice versa.
+			One-to-Many or Many-to-One Relationship == n entity is related to many other entities.
+			Many-to-Many Relationship == Multiple entities are related to multiple entities.
+	**Cardinality Ratio
+		Cardinality in DBMS defines the maximum number of times an instance in one entity can relate to instances of another entity.
+			One-to-one(1:1)
+			one-to-many(1:m)
+			many-to-one(m:1)
+			many-to-many(m:n)
+			
+	**Participation Constraints
+		Participation Constraints define whether the existence of an entity depends on its association with another entity through a relationship.
+		It specifies the minimum number of times an entity instance must participate in a relationship.
+			Two Types :-
+				1. Total Participation (Mandatory)
+					Every entity instance must participate in the relationship. It is represented by a double line in the ER diagram.
+					Example:
+						Every employee must work for a department. So, the Employee entity has total participation in the "Works For" relationship.
+				2. Partial Participation (Optional)
+					Not all entity instances are required to participate in the relationship. It is represented by a single line in the ER diagram.
+					Example:
+						Not every employee manages a department. So, the Employee entity has partial participation in the "Manages" relationship.
+						
+	Note: Cardinality Ratio and Participation Constraints together are known as the Structural Constraints of a relationship in the ER Model.
+	
