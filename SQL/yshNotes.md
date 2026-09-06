@@ -449,3 +449,129 @@ HAVING
 						
 	Note: Cardinality Ratio and Participation Constraints together are known as the Structural Constraints of a relationship in the ER Model.
 	
+	**Entity type to tables
+		Entity Types   ---> Tables
+		Attributes     ---> Columns
+		Key Attribute ---> Primary Key
+		
+	**Primary Key
+		CREATE TABLE table_name (
+			c1 t1 NOT NULL PRIMARY KEY, 
+		...
+			cn tn, 
+		);
+	**Foreign Key
+		CREATE TABLE table2(
+		  c1 t1 NOT NULL PRIMARY KEY,
+		  c2 t2,
+		  FOREIGN KEY(c2) REFERENCES table1(c3) ON DELETE CASCADE
+		);
+	
+					--ON DELETE CASCADE == Ensure that if a row intable1is deleted, then all its related rows intable2will also be deleted.
+					--To enable foreign key constraints in SQLite, usePRAGMA foreign_keys = ON; By default it is enabled in our platform!
+					
+	**Relational databases creating
+	
+	-- customer table
+	-- CREATE TABLE customer(
+	--   id integer NOT NULL PRIMARY KEY,
+	--   name varchar(250),
+	--   age int
+	-- );
+	-- pragma table_info(customer);
+	-- product table
+	-- CREATE TABLE product(
+	--   id integer NOT NULL PRIMARY KEY,
+	--   name varchar(250),
+	--   price int,
+	--   brand varchar(250),
+	--   category varchar(250)
+	-- );
+	-- pragma table_info(product);
+	-- address table
+	-- CREATE TABLE address(
+	--   id integer NOT NULL PRIMARY KEY,
+	--   pin_code integer,
+	--   door_no varchar(250),
+	--   city varchar(250),
+	--   customer_id integer,
+	--   FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE
+	-- );
+	-- pragma table_info(address);
+	-- cart table
+	-- CREATE TABLE cart(
+	--   id integer NOT NULL PRIMARY KEY,
+	--   customer_id integer NOT NULL UNIQUE,
+	--   total_price integer,
+	--   FOREIGN KEY(customer_id) REFERENCES customer(id) ON DELETE CASCADE
+	-- );
+	-- pragma table_info(cart);
+	-- table cart_product
+	-- CREATE TABLE cart_product(
+	--   id integer NOT NULL PRIMARY KEY,
+	--   cart_id integer,
+	--   product_id integer,
+	--   quantity integer,
+	--   FOREIGN KEY (cart_id) REFERENCES cart(id) ON DELETE CASCADE,
+	--   FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
+	-- );
+	-- pragma table_info(cart_product);
+	-- inserting into customer table
+	-- INSERT INTO
+	--   customer(id, name, age)
+	-- VALUES
+	--   (1, 'John', 29),
+	--   (2, 'Emma', 24);
+	-- inserting into address table
+	-- INSERT INTO
+	--   address(id, pin_code, door_no, city, customer_id)
+	-- VALUES
+	--   (1001, 517130, '6-1', 'Hyderabad', 1),
+	--   (1002, 615670, '6-13', 'Bengaluru', 1);
+	-- inserting into cart table
+	-- INSERT INTO
+	--   cart(id, total_price, customer_id)
+	-- VALUES
+	--   (1, 12000, 1),
+	--   (2, 500, 2);
+	-- inserting into product table
+	-- INSERT INTO
+	--   product(id, name, price, brand, category)
+	-- VALUES
+	--   (1, 'Jeans', 1500, 'Pepe', 'Clothing'),
+	--   (2, 'T-shirt', 500, 'Puma', 'Clothing'),
+	--   (3, 'Mobile', 10000, 'Redmi', 'Gadgets'),
+	--   (4, 'Watch', 2000, 'Titan', 'Gadgets');
+	-- inserting into cart_product table
+	-- INSERT INTO
+	--   cart_product(id, cart_id, product_id, quantity)
+	-- VALUES
+	--   (1, 1, 1, 1),
+	--   (2, 1, 2, 1),
+	--   (3, 1, 3, 1),
+	--   (4, 2, 1, 1);
+	-- 1. One-to-Many Relationships....Retrieve all the addresses for John
+	-- SELECT
+	--   *
+	-- FROM
+	--   customer
+	--   JOIN address ON customer.id = address.customer_id
+	-- WHERE
+	--   customer.name = "John";
+	-- 2. One-to-One Relationships....Retrieve the cart details for John
+	-- SELECT
+	--   *
+	-- FROM
+	--   customer
+	--   JOIN cart ON customer.id = cart.customer_id
+	-- WHERE
+	--   customer.name = "John";
+	-- 3. Many-to-Many Relationships....Retrieve all the products in John's cartwhere (customer_id = 1).
+	-- SELECT
+	--   *
+	-- FROM
+	--   cart
+	--   JOIN cart_product ON cart.id = cart_product.cart_id
+	--   JOIN product ON product.id = cart_product.product_id
+	-- WHERE
+	--   cart.customer_id = 1;
