@@ -610,7 +610,7 @@ HAVING
 		WHERE review.course_id = 15;
 		
 	**Left Join
-		..InLEFT JOIN, for each row in the left table, matched rows from the right table are combined. 
+		..In LEFT JOIN, for each row in the left table, matched rows from the right table are combined. 
 		If there is no match, NULL values are assigned to the right half of the rows in the temporary table.
 		
 		--SELECT student.full_name
@@ -618,6 +618,59 @@ HAVING
 		   LEFT JOIN student_course
 		ON student.id = student_course.student_id
 		WHERE student_course.id IS NULL;
+		
+	**Right Join
+		..RIGHT JOIN or RIGHT OUTER JOIN is vice versa of LEFT JOIN.
+		I.e., inRIGHT JOIN, for each row in the right table, 
+		matched rows from the left table are combined. 
+		If there is no match, NULL values are assigned to the left half of the rows in the temporary table.
+		
+		--SELECT course.name,
+				instructor.full_name
+		FROM course
+		   RIGHT JOIN instructor
+		ON course.instructor_id = instructor.instructor_id;
+		
+	**Full Join
+		..FULL JOIN or FULL OUTER  JOIN is the result of both RIGHT JOIN and LEFT JOIN
+		..FULL JOIN is not supported in some dbms(SQLite)
+		
+		--SELECT course.name,
+				instructor.full_name
+		FROM course
+		   FULL JOIN instructor
+		ON course.instructor_id = instructor.instructor_id;
+		
+	**Cross join
+		..In CROSS JOIN, each row from the first table is combined with all rows in the second table. 
+		Cross Join is also called as CARTESIAN JOIN.
+		
+		--SELECT course.name AS course_name,
+				instructor.full_name AS instructor_name
+		FROM course
+		   CROSS JOIN instructor;
+		   
+	**Self join
+		..combine a table with itself.
+		
+		--SELECT sc1.student_id AS student_id1,
+		  sc2.student_id AS student_id2, sc1.course_id
+		FROM
+		   student_course AS sc1
+		   INNER JOIN student_course sc2 ON sc1.course_id = sc2.course_id
+		WHERE
+			sc1.student_id < sc2.student_id;
+			
+			
+			
+			Join Type								Use Case
+			
+			Natural Join					Joins based on common columns
+			Inner Join						Joins based on a given condition
+			Left Join						All rows from left table & matched rows from right table
+			Right Join						All rows from right table & matched rows from left table
+			Full Join						All rows from both the tables
+			Cross Join						All possible combinations
 		
 	**Joins on Multiple Tables
 		--Fetch all the students who enrolled for the courses taught by the instructor “Arun” (id = 102)
