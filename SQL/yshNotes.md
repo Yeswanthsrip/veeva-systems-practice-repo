@@ -742,3 +742,113 @@ HAVING
 		..To remove a view from a database, use the DROP VIEW statement.
 		
 		--DROP VIEW view_name;
+		
+***SubQuery
+	..A subquery is a query written inside another SQL query.
+	...The inner query (subquery) runs first
+	....Its result is then used by the outer query
+	
+	..Subqueries are used when one query depends on the result of another query.
+	..To create temporary result sets using the FROM clause.
+	..To perform calculations inside the SELECT clause.
+	..To simplify complex queries by breaking them into smaller steps.
+	
+	..Subquery returning more than one column:(X)
+	..(When a subquery is used in a calculation, comparison, or SELECT expression, 
+	   it must return exactly one value (single column and single row).)
+	
+	**Why SubQuery?
+		..Aggregate functions (AVG, SUM, COUNT, MIN, MAX) cannot be used directly in the WHERE clause.
+		
+		Q.)Let's say we have to find products that are priced higher than the average price.
+			--SELECT *
+			FROM product
+			WHERE Price_per_unit > avg(price_per_unit);
+			---Error: Misuse of aggregate fun
+			
+			..Instead of using avg() directly, replace it with a subquery that returns the average price:
+			--SELECT *
+			FROM product
+			WHERE Price_per_unit > (SELECT avg(price_per_unit) FROM product);
+			
+	..A subquery must always be wrapped in brackets ().
+	
+	**Usage of SubQueries with other clauses
+		Clause		 Supported
+		
+		WHERE			yes
+		SELECT			yes
+		FROM			yes
+		HAVING			yes
+		
+	--Subquery with SELECT Clause
+	---SELECT
+	  name,
+	  (
+		  SELECT AVG(rating)
+		  FROM product
+		  WHERE category = "WATCH"
+	  ) - rating AS rating_variance
+	FROM product
+	WHERE category = "WATCH";
+	
+	--Subquery with WHERE Clause
+	---SELECT *
+	FROM product
+	WHERE product_id IN (
+		  SELECT product_id
+		  FROM order_product
+		  WHERE order_id = 534
+	  );
+	  
+	--Q.) We need to find all the order IDs and classify each one based on whether its order amount is above or below the average order value.
+	---SELECT
+	  order_id,
+	  CASE
+		WHEN (
+		  total_amount >=(
+			SELECT
+			  avg(total_amount)
+			FROM
+			  order_details
+		  )
+		) THEN "Above Verage"
+		ELSE "Below Average"
+	  END AS order_value_tag
+	FROM
+	  order_details;
+	  
+	--Monthly Average Order Amount per User
+	Get each user's monthly average order amount in 2021.
+
+	It is calculated as the average of the total order amount spent in each month for a user.
+	---SELECT
+	  monthly_totals.customer_id,
+	  AVG(monthly_totals.total_amount) AS monthly_average_order_amount
+	FROM
+	  (
+		SELECT
+		  customer_id,
+		  STRFTIME('%Y-%m', order_details.order_date) AS year_month,
+		  SUM(total_amount) AS total_amount
+		FROM
+		  order_details
+		WHERE
+		  STRFTIME('%Y', order_details.order_date) = '2021'
+		GROUP BY
+		  customer_id,
+		  year_month
+	  ) AS monthly_totals
+	GROUP BY
+	  monthly_totals.customer_id;
+	  
+					Topic													Key Takeaway
+					
+			What is a Subquery?							A query written inside another SQL query; inner query runs first
+			Why use Subqueries?							When one query depends on the result of another
+			Syntax Rule									Subquery must always be wrapped in parentheses ()
+			WHERE clause								Aggregate functions like AVG() cannot be used directly; use a subquery instead
+			SELECT clause								Subquery must return exactly 1 column and 1 row
+			FROM clause									Subquery acts as a temporary/derived table (give it an alias)
+			IN operator									Subquery can return a list of values (multiple rows, single column)
+			Common Mistake								Subquery returning multiple columns in SELECT or comparison context → Error
