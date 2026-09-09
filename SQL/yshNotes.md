@@ -708,3 +708,37 @@ HAVING
 			ON course.id = student_course.course_id
 			GROUP BY
 			  course.id;
+			  
+***Views
+	..A view can simply be considered as a name to a SQL Query
+	..Views are used to write complex queries that involves multiple joins, group by, etc., and can be used whenever needed.
+	..Restrict access to the data such that a user can only see limited data instead of a complete table.
+	
+	**Create View
+		..To create a view in the database, use theCREATE VIEWstatement.
+		
+		--CREATE VIEW user_base_details AS 
+		SELECT id, name, age, gender, pincode
+		FROM user;
+		
+		..In general, views are read only.
+		We cannot perform write operations like updating, deleting & inserting rows in the base tables through views.
+		
+	**Querying Using View
+		..We can use its name instead of writing the original query to get the data.
+		
+		--SELECT * FROM user_base_details;
+	**List All Available Views
+		..In SQLite, to list all the available views, we use the folowing query.
+		
+		--SELECT
+		  name
+		FROM
+		  sqlite_master
+		WHERE
+		  TYPE = 'view';
+		  
+	**Delete View
+		..To remove a view from a database, use the DROP VIEW statement.
+		
+		--DROP VIEW view_name;
