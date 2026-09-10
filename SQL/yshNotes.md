@@ -13,9 +13,9 @@ DBMS
 -- INSERT INTO
 --   friends (name, age, village)
 -- VALUES
---   ("Lalithyaa", 21, "Tallagokavaram"),
---   ("Bhavyaa", 20, "Polavaram"),
---   ("Vaani", 20, "Tadepalligudem");
+--   ("gopi", 21, "Tallagokavaram"),
+--   ("iswar", 20, "Tadepalligudem"),
+--   ("Vaani", 20, "polavaram");
 -- //update
 -- UPDATE
 --   friends
