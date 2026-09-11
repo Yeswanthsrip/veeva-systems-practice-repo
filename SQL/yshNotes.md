@@ -977,4 +977,4 @@ HAVING
 			LEAD(sales) OVER (
 				ORDER BY month
 			) AS next_sales
-		FROM sales;
+		FROM sales; 
