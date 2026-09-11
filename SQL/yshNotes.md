@@ -14,8 +14,8 @@ DBMS
 --   friends (name, age, village)
 -- VALUES
 --   ("gopi", 21, "Tallagokavaram"),
---   ("iswar", 20, "Tadepalligudem"),
---   ("Vaani", 20, "polavaram");
+--   ("iswar", 20, "Polavaram"),
+--   ("srinivas", 20, "Tadepalligudem");
 -- //update
 -- UPDATE
 --   friends
@@ -26,7 +26,7 @@ DBMS
 -- SET
 --   age = 20
 -- WHERE
---   name = "Bhavyaa";
+--   name = "gopi";
 -- //alter add
 -- ALTER TABLE
 --   friends
@@ -852,3 +852,129 @@ HAVING
 			FROM clause									Subquery acts as a temporary/derived table (give it an alias)
 			IN operator									Subquery can return a list of values (multiple rows, single column)
 			Common Mistake								Subquery returning multiple columns in SELECT or comparison context → Error
+			
+			
+***Window Functions
+	..GROUP BY
+		↓
+	Many rows → One row per group
+
+	WINDOW FUNCTION
+		↓
+	Many rows → Keep all rows + calculate something
+	
+	**syntax
+		--function() OVER (
+			PARTITION BY column
+			ORDER BY column
+		)
+		
+		--AVG(salary) OVER (
+			PARTITION BY department
+		)
+		
+		
+				  Function					   Purpose
+					
+				ROW_NUMBER()			Gives unique sequential number
+				RANK()					Gives rank, leaves gaps after ties
+				DENSE_RANK()			Gives rank, doesn't leave gaps
+				SUM() OVER()			Running/partition total
+				AVG() OVER()			Average while keeping rows
+				COUNT() OVER()			Count while keeping rows
+				LAG()					Get previous row's value
+				LEAD()					Get next row's value
+				FIRST_VALUE()			Get first value in window
+				LAST_VALUE()			Get last value in window
+				
+	**PARTITION BY
+		..PARTITION BY divides the rows into groups without removing the rows.
+		
+		--SELECT
+			employee,
+			department,
+			salary,
+			AVG(salary) OVER (
+				PARTITION BY department
+			) AS dept_avg
+		FROM employee;
+		
+	**ROW_NUMBER()
+	
+		--SELECT
+			employee,
+			salary,
+			ROW_NUMBER() OVER (
+				ORDER BY salary DESC
+			) AS row_num
+		FROM employee;
+		
+	**RANK()
+		
+		--SELECT
+			employee,
+			salary,
+			RANK() OVER (
+				ORDER BY salary DESC
+			) AS ranking
+		FROM employee;
+		
+	**DENSE_RANK()
+	
+		--SELECT
+			employee,
+			salary,
+			DENSE_RANK() OVER (
+				ORDER BY salary DESC
+			) AS ranking
+		FROM employee;
+		
+	**PARTITION BY + RANK()
+		
+		--SELECT
+			employee,
+			department,
+			salary,
+			RANK() OVER (
+				PARTITION BY department
+				ORDER BY salary DESC
+			) AS ranking
+		FROM employee;
+		
+	**SUM() OVER()
+	
+		--SELECT
+			employee,
+			salary,
+			SUM(salary) OVER () AS total_salary
+		FROM employee;
+		
+	**AVG() OVER()
+	
+		--SELECT
+			employee,
+			salary,
+			AVG(salary) OVER () AS average_salary
+		FROM employee;
+		
+	**LAG()
+		..LAG() gives you the value from a previous row.
+		
+		--SELECT
+			month,
+			sales,
+			LAG(sales) OVER (
+				ORDER BY month
+			) AS previous_sales
+		FROM sales;
+		
+	**LEAD()
+		..LEAD() is the opposite.
+		
+		--SELECT
+			month,
+			sales,
+			LEAD(sales) OVER (
+				ORDER BY month
+			) AS next_sales
+		FROM sales;
