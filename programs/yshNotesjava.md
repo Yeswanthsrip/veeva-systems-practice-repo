@@ -115,7 +115,7 @@ unset bits/clear bits=no.of 0's in binary number
 	1. String s = "Hello";
 		char[] arr = s.toCharArray();
 		
-***Converting String IntegerArray
+***Converting String to IntegerArray
 	1. String s = "12345";
 		int[] arr = new int[s.length()];
 		for (int i = 0; i < s.length(); i++) {
@@ -130,7 +130,7 @@ unset bits/clear bits=no.of 0's in binary number
 		}
 		System.out.println(s);
 		
-***COnverting CharacterArray to String
+***Converting CharacterArray to String
 	1. char[] arr = {'H', 'i'};
 		String s = new String(arr);
 		

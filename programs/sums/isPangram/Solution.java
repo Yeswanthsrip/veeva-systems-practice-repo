@@ -9,8 +9,9 @@ class Main
 		isPangram();
 	}
 	public static void isPangram(){
-	    String s="balayyaA";
+	    boolean b=true;
 		System.out.println(91);
-		System.out.println(s.toLowerCase());
+		String s=Boolean.toString(b);
+		System.out.println(s);
 	}
 }
