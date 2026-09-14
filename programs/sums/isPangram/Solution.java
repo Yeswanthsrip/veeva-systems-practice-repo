@@ -3,14 +3,23 @@ class Main
 {
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
-		//String s1=sc.next();
-		//String s2=sc.next();
-		//System.out.println(isPangram(s1,s2));
-		isPangram();
+		String s=sc.nextLine();
+		System.out.println(isPangram(s));
 	}
-	public static void isPangram(){
-	    int n = 10;
-		int count = Integer.bitCount(n);
-		System.out.println(count);
+	public static boolean isPangram(String s){
+	    int p[]=new int[26];
+	    char ch[]=s.toCharArray();
+	    for(int c:ch){
+	        if(Character.isLetter(c)){
+				c=Character.toLowerCase(c);
+	            p[c-'a']++;
+	        }
+	    }
+	    int la=0;
+	    for(int x:p){
+	        if(x!=0)
+	            la++;
+	    }
+	    return (la==26)?true:false;
 	}
 }
