@@ -274,7 +274,7 @@ unset bits/clear bits=no.of 0's in binary number
 	Math.pow(a, b);
 	Math.sqrt(n);
 	
-***Strings Methods
+***String Methods
 	length()
 	charAt()
 	indexOf()

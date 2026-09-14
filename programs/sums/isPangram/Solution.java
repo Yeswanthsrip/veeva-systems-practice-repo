@@ -9,9 +9,8 @@ class Main
 		isPangram();
 	}
 	public static void isPangram(){
-	    boolean b=true;
-		System.out.println(91);
-		String s=Boolean.toString(b);
-		System.out.println(s);
+	    int n = 10;
+		int count = Integer.bitCount(n);
+		System.out.println(count);
 	}
 }
