@@ -42,37 +42,37 @@ unset bits/clear bits=no.of 0's in binary number
 	1. String s = "Hello";
 		char ch = s.charAt(0);
 		
-***COnverting String to UpperCase/LowerCase
+***Converting String to UpperCase/LowerCase
 	1. String s = "Java";
 		System.out.println(s.toUpperCase());
 		System.out.println(s.toLowerCase());
 	
-***COnverting String to Long
+***Converting String to Long
 	1. String s = "123456789";
 		long n = Long.parseLong(s);
 		
-***COnverting String to Double
+***Converting String to Double
 	1. String s = "12.5";
 		double n = Double.parseDouble(s);
 		
-***COnverting String to Float
+***Converting String to Float
 	1. String s = "12.5";
 		float n = Float.parseFloat(s);
 		
-***COnverting String to Boolean
+***Converting String to Boolean
 	1. String s = "true";
 		boolean value = Boolean.parseBoolean(s);
 		
-***COnverting String to StringArray
+***Converting String to StringArray
 	1. String s = "Java is easy";
 		String[] arr = s.split(" ");
 		
-***COnverting StringArray to String
+***Converting StringArray to String
 	1. String[] arr = {"Java", "is", "easy"};
 		String s = String.join(" ", arr);
 		System.out.println(s);
 		
-***COnverting String to StringBuilder
+***Converting String to StringBuilder
 	1. String s = "Hello";
 		StringBuilder sb = new StringBuilder(s);
 		
@@ -80,7 +80,7 @@ unset bits/clear bits=no.of 0's in binary number
 	1. StringBuilder sb = new StringBuilder("Hello");
 		String s = sb.toString();
 		
-***COnverting Long to String
+***Converting Long to String
 	1. long n = 123456789L;
 		String s = String.valueOf(n);
 		
@@ -88,7 +88,7 @@ unset bits/clear bits=no.of 0's in binary number
 	1. boolean value = true;
 		String s = String.valueOf(value);
 	
-***COnverting Double to String
+***Converting Double to String
 	1. double n = 12.5;
 		String s = String.valueOf(n);
 		
