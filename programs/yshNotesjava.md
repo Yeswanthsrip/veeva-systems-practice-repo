@@ -7,7 +7,16 @@ No.of trailing zeroes in n!=divide by 5,25,125....
 Set bits=no.of 1's in binary number
 unset bits/clear bits=no.of 0's in binary number
 
-***   '0' → 48
+***		AsCII Values
+
+		  '0' → 48
+		  '1' → 49
+		  '9' → 57
+		  'A' → 65
+		  'Z' → 90
+		  'a' → 97
+		  'z' → 122
+		  
 
 ***Converting Integer to String
 	1. int n = 123;
