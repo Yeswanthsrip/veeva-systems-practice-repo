@@ -184,3 +184,107 @@ unset bits/clear bits=no.of 0's in binary number
 			octal → int									Integer.parseInt(s, 8)
 
 			count set bits								Integer.bitCount(n)
+			
+***Check UpperCase/LowerCase
+	1. char ch = 'A';
+		System.out.println(Character.isUpperCase(ch));
+	
+	2. char ch = 'a';
+		System.out.println(Character.isLowerCase(ch));
+		
+***Check Digit
+	1. char ch = '7';
+		System.out.println(Character.isDigit(ch));
+
+***Check Letter
+	1. char ch = 'A';
+		System.out.println(Character.isLetter(ch));
+		Character.isAlphabetic(ch);
+		
+***Check LetterOrDigit
+	1. char ch = '7';
+		System.out.println(Character.isLetterOrDigit(ch));
+		
+***Check WhiteSpace
+	1. char ch = ' ';
+		System.out.println(Character.isWhitespace(ch));
+		
+***Convert to uppercase/lowercase
+	1. char ch = 'a';
+		char result = Character.toUpperCase(ch);
+		
+	2. char ch = 'A';
+		char result = Character.toLowerCase(ch);
+		
+***Strings equality
+	1. String a = "Java";
+		String b = "Java";
+		System.out.println(a.equals(b));
+		
+***equals ignorecase
+	1. String a = "Java";
+		String b = "JAVA";
+		System.out.println(a.equalsIgnoreCase(b));
+		
+***String contains text
+	1. String s = "Hello Java";
+		System.out.println(s.contains("Java"));
+		
+***String startswith/endswith
+	1. String s = "Hello Java";
+		System.out.println(s.startsWith("Hello"));
+		
+***indexOfCharacter
+	1. String s = "Hello";
+		System.out.println(s.indexOf('l'));
+		
+***lastIndexOf
+	1. String s = "Hello";
+		System.out.println(s.lastIndexOf('l'));
+		
+***extract subString
+	1. String s = "HelloWorld";
+		System.out.println(s.substring(5));
+		
+***removeSpaceAtBeginingAndEnd
+	1. String s = "  Hello  ";
+		System.out.println(s.trim());
+		
+***replaceCharacters
+	1. String s = "banana";
+		System.out.println(s.replace('a', 'o'));
+		
+***split strings
+	1. String s = "Java is easy";
+		String[] arr = s.split(" ");
+		
+***Math methods
+	Math.max(a, b);
+	Math.min(a, b);
+	Math.abs(a);
+	Math.pow(a, b);
+	Math.sqrt(n);
+	
+***Strings Methods
+	length()
+	charAt()
+	indexOf()
+	lastIndexOf()
+	equals()
+	equalsIgnoreCase()
+	compareTo()
+	compareToIgnoreCase()
+	toLowerCase()
+	toUpperCase()
+	trim()
+	split()
+	valueOf()
+	
+***StringBuilder Methods
+	length()
+	insert(i,ch)
+	reverse()
+	delete()
+	deleteCharAt()
+	sb.setLength(0)
+	
