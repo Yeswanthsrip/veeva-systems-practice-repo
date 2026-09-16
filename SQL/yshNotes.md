@@ -1043,3 +1043,18 @@ HAVING
 			LEFT()			Characters from left			LEFT('Alice', 2)			  Al
 			RIGHT()			Characters from right			RIGHT('Alice', 2)			  ce
 			SUBSTRING()		Characters from a position		SUBSTRING('Alice', 2)		  lice
+			
+***Create Table1 now copy table1 schema and records to Table2 && only the schema from Table1 to Table3
+	**Copy entire schema and records into table2
+		-CREATE TABLE table2 AS
+			SELECT *
+			FROM table1;
+			
+	**Copy only the schema into table3
+		-CREATE TABLE table3 AS
+			SELECT *
+			FROM table1
+			WHERE 1 = 0;
+			
+	**exact table structure including constraints
+		-CREATE TABLE table2 LIKE table1;
