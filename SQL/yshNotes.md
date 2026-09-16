@@ -1004,3 +1004,25 @@ HAVING
 	*       → zero or more
 	[.]     → actual dot
 	$       → end
+	
+	**REGEXP BINARY
+		==MySQL regex comparison may treat these as equal:
+
+			- leetcode.com
+			- LEETCODE.COM
+			- LeetCode.com
+		
+		==BINARY makes the comparison case-sensitive.
+		
+		-SELECT *
+		FROM Users
+		WHERE mail REGEXP BINARY '^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode[.]com$';
+		
+	**
+	select * from users
+    where regexp_like(mail,'^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode[.]com$','c');
+	
+	Flag  ==   Meaning
+	
+	'c'   ==  Case-sensitive
+	'i'   ==  Case-insensitive
