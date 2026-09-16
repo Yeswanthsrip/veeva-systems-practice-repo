@@ -991,3 +991,16 @@ HAVING
 	FROM Activities
 	GROUP BY sell_date
 	ORDER BY sell_date;
+	
+***REGULAR EXPRESSIONS
+	-SELECT *
+	FROM Users
+	WHERE mail REGEXP '^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode[.]com$';
+	
+	Memory trick:
+
+	^       → start
+	[ ]     → allowed characters
+	*       → zero or more
+	[.]     → actual dot
+	$       → end
