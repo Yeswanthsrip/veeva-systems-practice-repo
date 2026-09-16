@@ -215,6 +215,223 @@ HAVING
 	strftime("%Y", release_date)
 	
 	SELECT 
+    strftime('%m', release_date) AS month,DBMS
+
+--in sqlite alter modify,truncate are not there
+
+--pragma table_info(table_name)
+
+--create table table_name (field1 type1,field2 type2...);
+
+--select * from table_name;
+
+-- CREATE TABLE friends (name varchar(25), age int, village varchar(25));
+-- pragma table_info(friends);
+-- INSERT INTO
+--   friends (name, age, village)
+-- VALUES
+--   ("gopi", 21, "Tallagokavaram"),
+--   ("iswar", 20, "Polavaram"),
+--   ("srinivas", 20, "Tadepalligudem");
+-- //update
+-- UPDATE
+--   friends
+-- SET
+--   age = 21;
+-- UPDATE
+--   friends
+-- SET
+--   age = 20
+-- WHERE
+--   name = "gopi";
+-- //alter add
+-- ALTER TABLE
+--   friends
+-- ADD
+--   COLUMN number int;
+-- //alter rename
+-- ALTER TABLE
+--   friends RENAME COLUMN number TO phno;
+-- //alter modify
+-- ALTER TABLE
+--   friends
+-- MODIFY
+--   column phno varchar(10);
+--   modify doesn't work in sqlite
+-- //alter drop
+-- ALTER TABLE
+--   friends DROP COLUMN phno;
+-- //delete specific row
+-- DELETE FROM
+--   friends
+-- WHERE
+--   name = "Vani";
+-- //delete all records
+-- DELETE FROM
+--   friends;
+-- DROP TABLE friends;
+-- //truncate not there in sqlite
+
+-- SELECT
+--   *
+-- FROM
+--   friends;
+
+
+***IN BETWEEN operators
+--IN
+SELECT
+  *
+FROM
+  product
+WHERE
+  brand IN ( "Puma", "Levi's", "Mufti", "Lee", "Denim");
+  
+--BETWEEN
+ SELECT
+  name,
+  price,
+  brand
+FROM
+  product
+WHERE
+  price BETWEEN 1000
+  AND 5000;
+  
+***ORDER BY
+
+SELECT
+  name,
+  price,
+  rating
+FROM
+  product
+WHERE
+  name = "Blue Shirt"
+ORDER BY
+  rating DESC,
+  price ASC;
+  
+***DISTINCT
+
+SELECT
+  DISTINCT brand
+FROM
+  product
+ORDER BY
+  brand;
+  
+*** LIMIT OFFSET
+
+SELECT
+  name,
+  price,
+  rating
+FROM
+  product
+ORDER BY
+  rating DESC
+LIMIT 5 
+OFFSET 6;
+
+------------------In SQLite, OFFSET clause should be used after theLIMITclause.
+				  Default OFFSET value is 0.
+				  In PostgreSQL, the OFFSET clause can be used with or without the LIMIT clause.-------
+				  
+				  
+***Aggregate functions Count,Sum,Max,Min,Avg
+
+SELECT
+  AVG(score) AS avg_score
+FROM
+  player_match_details;
+  
+.we can use aggregats functions are commonly used in select,having but not in where
+..WHERE filters rows before grouping
+..HAVING filters groups after aggregation.
+
+***Group By with Having
+
+SELECT
+  name,
+  COUNT(*) AS half_centuries
+FROM
+  player_match_details
+WHERE
+  score >= 50
+GROUP BY
+  name
+HAVING
+  half_centuries > 1;
+  
+***Expressions in querying
+
+**Arthmetic operations in sql
+..SELECT
+  (budget_in_cr + 10) AS new_budget
+FROM
+  movie;
+
+..SELECT
+  (budget_in_cr * 100) budget_as_lakhs
+FROM
+  movie;
+  
+..SELECT
+  (collection_in_cr / budget_in_cr) AS collection_rate
+FROM
+  movie;
+  
+..SELECT
+  age % 2 AS age_reminder_for_2
+FROM
+  actor;
+  
+**Using Expressions in select clause
+
+..SELECT
+  age % 2 AS age_reminder_for_2
+FROM
+  actor;
+  
+**In update clause
+
+..UPDATE movie
+SET rating = rating/2;
+
+**In having clause
+
+..SELECT
+  genre
+FROM
+  movie
+GROUP BY
+  genre
+HAVING
+  AVG(collection_in_cr - budget_in_cr) >= 100;
+  
+***SQL functions
+
+--Date Functions: Used to work with dates or times.
+--Cast Functions: Used to change the data type of a value.
+--Arithmetic Functions: Used to perform calculations on numbers.
+
+==strftime()
+	The strftime() function is used to extract year, month, day, hour
+	Strftime() extracts date and time in the string format.
+	
+	format		description				output format				Function					Behavior
+	
+	%Y			Year					1990, 2021 etc.			strftime("%Y", field_name)		Extract Year
+	%m			Month					01 - 12					strftime("%m", field_name)		Extract Month
+	%d			Day of the month		01 - 31					strftime("%d", field_name)		Extract Day
+	%H			Hour					00 - 24					strftime("%H", field_name)		Extract Hour
+	...	...	...	...	...
+	
+	strftime(format, field_name)
+	strftime("%Y", release_date)
+	
+	SELECT 
     strftime('%m', release_date) AS month,
 		COUNT(*) AS total_movies
 	FROM
@@ -1095,3 +1312,42 @@ HAVING
 			--   *
 			-- FROM
 			--   student3;
+			
+***Date functions in MySQL
+	
+			SQLite strftime()													MySQL equivalent
+	
+		strftime('%Y', date_column)									YEAR(date_column) or DATE_FORMAT(date_column, '%Y')
+		strftime('%m', date_column)									MONTH(date_column) or DATE_FORMAT(date_column, '%m')
+		strftime('%d', date_column)									DAY(date_column) or DATE_FORMAT(date_column, '%d')
+		strftime('%H', date_column)									HOUR(date_column) or DATE_FORMAT(date_column, '%H')
+		
+		-SELECT
+			MONTH(release_date) AS month,
+			COUNT(*) AS total_movies
+		FROM movie
+		WHERE YEAR(release_date) = 2010
+		GROUP BY MONTH(release_date);
+		
+		-SELECT
+			DATE_FORMAT(release_date, '%m') AS month,
+			COUNT(*) AS total_movies
+		FROM movie
+		WHERE DATE_FORMAT(release_date, '%Y') = '2010'
+		GROUP BY DATE_FORMAT(release_date, '%m');
+		
+		
+	**MySQL format symbols
+
+		Format					Meaning								Example
+
+		%Y					Four-digit year							2020
+		%y					Two-digit year							20
+		%m					Month with leading zero					01 to 12
+		%c					Month without leading zero				1 to 12
+		%d					Day with leading zero					01 to 31
+		%e					Day without leading zero				1 to 31
+		%H					Hour in 24-hour format					00 to 23
+		%h or %I			Hour in 12-hour format					01 to 12
+		%i					Minutes									00 to 59
+		%s					Seconds									00 to 59
