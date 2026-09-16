@@ -977,4 +977,17 @@ HAVING
 			LEAD(sales) OVER (
 				ORDER BY month
 			) AS next_sales
-		FROM sales; 
+		FROM sales;
+		
+***GROUP_CONCAT :-
+	-SELECT
+		sell_date,
+		COUNT(DISTINCT product) AS num_sold,
+		GROUP_CONCAT(
+			DISTINCT product
+			ORDER BY product
+			SEPARATOR ','
+		) AS products
+	FROM Activities
+	GROUP BY sell_date
+	ORDER BY sell_date;
