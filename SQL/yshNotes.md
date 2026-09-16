@@ -1026,3 +1026,20 @@ HAVING
 	
 	'c'   ==  Case-sensitive
 	'i'   ==  Case-insensitive
+	
+***UPPER(), LOWER(), LEFT(), SUBSTRING() and CONCAT().
+
+	--SELECT
+		user_id,
+		CONCAT(
+			UPPER(LEFT(name, 1)),
+			LOWER(SUBSTRING(name, 2))
+		) AS name
+	FROM Users
+	ORDER BY user_id;
+	
+			Function			Meaning							Example			  		Result
+			
+			LEFT()			Characters from left			LEFT('Alice', 2)			  Al
+			RIGHT()			Characters from right			RIGHT('Alice', 2)			  ce
+			SUBSTRING()		Characters from a position		SUBSTRING('Alice', 2)		  lice
