@@ -1058,3 +1058,40 @@ HAVING
 			
 	**exact table structure including constraints
 		-CREATE TABLE table2 LIKE table1;
+		
+		---- CREATE TABLE student (name varchar(250), id integer);
+			-- pragma table_info(student);
+			-- CREATE TABLE student2 AS
+			-- SELECT
+			--   *
+			-- FROM
+			--   student;
+			-- INSERT INTO
+			--   student
+			-- VALUES
+			-- ("yesh", 8);
+			-- SELECT
+			--   *
+			-- FROM
+			--   student;
+			-- SELECT
+			--   *
+			-- FROM
+			--   student2;
+			-- INSERT INTO
+			--   student2
+			-- SELECT
+			--   *
+			-- FROM
+			--   student;
+			-- CREATE TABLE student3 AS
+			-- SELECT
+			--   *
+			-- FROM
+			--   student
+			-- WHERE
+			--   1 = 0;
+			-- SELECT
+			--   *
+			-- FROM
+			--   student3;
