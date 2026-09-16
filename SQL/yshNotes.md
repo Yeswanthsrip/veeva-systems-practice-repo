@@ -1351,3 +1351,10 @@ HAVING
 		%h or %I			Hour in 12-hour format					01 to 12
 		%i					Minutes									00 to 59
 		%s					Seconds									00 to 59
+		
+		
+***CHAR_LENGTH() && LENGTH()
+	**CHAR_LENGTH==counts characters
+	**LENGTH==counts bytes
+		-select from student
+		where char_length(name)>5;
