@@ -7,6 +7,26 @@ DBMS
 --create table table_name (field1 type1,field2 type2...);
 
 --select * from table_name;
+				
+				|---------------------------------------------------------------|
+				|		DDL,DML,DQL												|
+				|																|
+				|	1. DDL(Data Definition Language) 	-> Create				|
+				|										-> Drop					|
+				|										-> Alter----->Add		|
+				|												----->Modify	|
+				|												----->Drop		|
+				|												----->Rename	|
+				|										-> Rename				|
+				|										-> Truncate				|
+				|																|
+				|	2. DML(Data Manipulation Language) -> Insert				|
+				|									   -> Update				|
+				|									   -> Delete				|
+				|																|
+				|	3. DQL(Data Query Language)        -> Select				|
+				|																|
+				|---------------------------------------------------------------|
 
 -- CREATE TABLE friends (name varchar(25), age int, village varchar(25));
 -- pragma table_info(friends);
